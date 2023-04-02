@@ -1,0 +1,294 @@
+'use strict';
+
+/* Controllers */
+
+angular.module('app')
+        .controller('AppCtrl', ['$scope', '$localStorage', '$window', '$rootScope', '$state', 'Auth', 'AUTH_EVENTS', 'Session', '$timeout', '$http', 'websocketHelper', 'Fullscreen', 'API_URL', 'toaster',
+            function ($scope, $localStorage, $window, $rootScope, $state, Auth, AUTH_EVENTS, Session, $timeout, $http, websocketHelper, Fullscreen, API_URL, toaster) {
+                // add 'ie' classes to html                
+
+                var isIE = !!navigator.userAgent.match(/MSIE/i);
+                if (isIE) {
+                    angular.element($window.document.body).addClass('ie');
+                }
+                if (isSmartDevice($window)) {
+                    angular.element($window.document.body).addClass('smart')
+                };
+
+                $scope.app = {
+                    name: 'TRUST MARK',
+                    nickname: 'TRUST MARK',
+                    fullname: 'BPJS Kesehatan Trust Mark',
+                    version: '1.0.0',
+                    year: 2021,
+                    company: 'BPJS Kesehatan',
+                    websocketcon: 'off',
+                    // for chart colors
+                    color: {
+                        primary: '#7266ba',
+                        info: '#23b7e5',
+                        success: '#27c24c',
+                        warning: '#fad733',
+                        danger: '#f05050',
+                        light: '#e8eff0',
+                        dark: '#3a3f51',
+                        black: '#1c2b36'
+                    },
+                    settings: {
+                        themeID: 1,
+                        navbarHeaderColor: 'bg-info',
+                        navbarCollapseColor: 'bg-white-only',
+                        asideColor: 'bg-white',
+                        headerFixed: true,
+                        asideFixed: true,
+                        asideFolded: false,
+                        asideDock: false,
+                        container: false
+                    }
+                }
+
+                $scope.$on('updateWebsocketcon', function (event, data) {
+                    $scope.app.websocketcon = data.websocketcon;
+                });
+
+                //save settings to local storage
+                if (angular.isDefined($localStorage.ans_settings)) {
+                    $scope.app.settings = $localStorage.ans_settings;
+                } else {
+                    $localStorage.ans_settings = $scope.app.settings;
+                }
+
+                $scope.$watch('app.settings', function () {
+                    if ($scope.app.settings.asideDock && $scope.app.settings.asideFixed) {
+                        // aside dock and fixed must set the header fixed.
+                        $scope.app.settings.headerFixed = true;
+                    }
+                    // for box layout, add background image
+                    $scope.app.settings.container ? angular.element('html').addClass('bg') : angular.element('html').removeClass('bg');
+                    // save to local storage
+                    $localStorage.ans_settings = $scope.app.settings;
+                }, true);
+
+                function isSmartDevice($window)
+                {
+                    // Adapted from http://www.detectmobilebrowsers.com
+                    var ua = $window['navigator']['userAgent'] || $window['navigator']['vendor'] || $window['opera'];
+                    // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
+                    return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
+                }
+
+                /* -------------------------------------------------------------------------------- */
+                
+
+                $scope.logout = function () {
+                    swal({
+                        title: "Konfirmasi",
+                        text: "Anda yakin ingin logout ?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Ok",
+                        closeOnConfirm: true}, 
+                        function(){
+                            Auth.logout();
+                        }
+                    );
+                }
+                
+                $scope.goFullscreen = function () {
+                    if (Fullscreen.isEnabled())
+                       Fullscreen.cancel();
+                    else
+                       Fullscreen.all();
+                }
+
+                /*$scope.$on('clearsession', function(event, data) {
+                    Auth.logout();
+                });*/
+                
+                $scope.$on('logoutsession', function(event, data) {
+                    Auth.logout();
+                });
+
+                var showLoginDialog = function () {
+                    $state.go('access.signout');
+                };
+
+                var showLogoutDialog = function () {
+                    Session.destroy();
+                    $state.go('access.signout');
+                };
+                
+                $rootScope.currentUser = {
+                    id : null,
+                    nama : null
+                };
+
+                var welcome = function () {
+                    $rootScope.currentUser = {
+                        id: Session.id,
+                        nama: Session.nama,
+                        mitra: Session.mitra
+                    };
+
+                    //console.log(Session);
+
+                    if(Session.mitra==0){
+                        $state.go('admin.dashboard');
+                    }
+                    else if(Session.mitra==1){
+                        $state.go('mitra.dashboard');   
+                    }
+                }
+
+                var showNotAuthorized = function () {
+                    $state.go('access.forbidden');
+                }
+
+                $scope.backtoportal = function(){
+                    window.location.href = window.location.origin + '/trust-mark/';
+                }
+
+                $rootScope.currentUser = null;
+                $rootScope.$on(AUTH_EVENTS.notAuthorized, showNotAuthorized);
+                $rootScope.$on(AUTH_EVENTS.notAuthenticated, showLoginDialog);
+                $rootScope.$on(AUTH_EVENTS.sessionTimeout, showLoginDialog);
+                $rootScope.$on(AUTH_EVENTS.logoutSuccess, showLogoutDialog);
+                $rootScope.$on(AUTH_EVENTS.loginSuccess, welcome);
+
+                if (Session.isSessionActive()) {
+                    Auth.login2();
+                }
+                
+                $rootScope.getGMT = function () {
+                	var gmt = Date().toString().match(/([-\+][0-9]+)\s/)[0];
+                	var plusminus = gmt.substr(0, 1);
+                	var jamx = gmt.substr(2, 1);
+                	var jam = parseInt(jamx);
+                	
+                	var utc = "GMT "+gmt;
+                	if(jam==7){
+                		utc = "WIB";
+                	}
+                	else if(jam==8){
+                		utc = "WITA";
+                	}
+                	else if(jam==9){
+                		utc = "WIT";
+                	}
+                	
+                	return utc;
+                }
+                
+                $rootScope.getLocalDateTime = function (t) {
+                	var gmt = Date().toString().match(/([-\+][0-9]+)\s/)[0];
+                	var plusminus = gmt.substr(0, 1);
+                	var jamx = gmt.substr(2, 1);
+                	var jam = parseInt(jamx);
+                	
+                	var utc = "GMT "+gmt;
+                	if(jam==7){
+                		utc = "WIB";
+                	}
+                	else if(jam==8){
+                		utc = "WITA";
+                	}
+                	else if(jam==9){
+                		utc = "WIT";
+                	}
+                	
+                	var d = new Date(t);
+                	var res;
+                	if(moment(d).isValid()){
+                		res = moment(d).format("DD/MM/YYYY HH:mm:ss") + ' ' + utc;
+                	}
+                	else{
+                		res = '-';
+                	}
+                	return res;
+                }
+                
+                $rootScope.getLocalTime = function (t) {
+                	var gmt = Date().toString().match(/([-\+][0-9]+)\s/)[0];
+                	var plusminus = gmt.substr(0, 1);
+                	var jamx = gmt.substr(2, 1);
+                	var jam = parseInt(jamx);
+                	
+                	var utc = "GMT "+gmt;
+                	if(jam==7){
+                		utc = "WIB";
+                	}
+                	else if(jam==8){
+                		utc = "WITA";
+                	}
+                	else if(jam==9){
+                		utc = "WIT";
+                	}
+                	
+                	var d = new Date(t);    
+                	var res;
+                	if(moment(d).isValid()){
+                		res = moment(d).format("HH:mm:ss") + ' ' + utc;
+                	}
+                	else{
+                		res = '-';
+                	}
+                	return res;
+                }
+                
+                $rootScope.getLocalTimeOnly = function (t) {
+                	var gmt = Date().toString().match(/([-\+][0-9]+)\s/)[0];
+                	var plusminus = gmt.substr(0, 1);
+                	var jamx = gmt.substr(2, 1);
+                	var jam = parseInt(jamx);
+                	
+                	var utc = "GMT "+gmt;
+                	if(jam==7){
+                		utc = "WIB";
+                	}
+                	else if(jam==8){
+                		utc = "WITA";
+                	}
+                	else if(jam==9){
+                		utc = "WIT";
+                	}
+                	
+                	var d = new Date(t);    
+                	var res;
+                	if(moment(d).isValid()){
+                		res = moment(d).format("HH:mm:ss");
+                	}
+                	else{
+                		res = '-';
+                	}
+                	return res;
+                }
+                
+                angular.element(document).ready(function () {
+                    $window.loading_screen.finish();
+                });
+
+                app.controller('DatePickerCtrl', ['$scope', function ($scope) {
+                    $scope.minDate = $scope.minDate ? null : new Date('2016-10-20');
+                    $scope.maxDate = new Date();
+                    var date = new Date();
+                    $scope.maxDatePlusDay = date.setDate(date.getDate() + 1);
+
+                    $scope.open = function ($event) {
+                        $event.preventDefault();
+                        $event.stopPropagation();
+                        $scope.opened = true;
+                    };
+
+                    $scope.dateOptions = {
+                        formatYear: 'yy',
+                        startingDay: 1,
+                        class: 'datepicker'
+                    };
+
+                    $scope.initDate = new Date('2016-10-20');
+                    $scope.formats = ['dd/MM/yyyy'];
+                    $scope.format = $scope.formats[0];
+                }]);
+
+            }]);

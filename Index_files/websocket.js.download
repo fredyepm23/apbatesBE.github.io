@@ -1,0 +1,155 @@
+'use strict';
+
+app.factory('websocketHelper',
+        ['$http', '$websocket', 'API_URL', '$rootScope', 'Session', 'toaster',
+            function ($http, $websocket, API_URL, $rootScope, Session, toaster) {
+
+                var websocketHelper = {};
+                var ws = null;
+                websocketHelper.open = function (id, kdppk) {
+
+                    ws = $websocket(API_URL.websocket, null, {reconnectIfNotNormalClose: true});
+                    ws.onMessage(function (event) {
+                        //console.log(event);
+                        var res = JSON.parse(event.data);
+                        //console.log(res);
+                        switch (res.event) {
+                        	case 'login_respon':
+                        		if(res.response.code==1){
+                        			toaster.pop('success', 'Informasi', 'Welcome.');
+                        		}
+                        		else{
+                        			toaster.pop('error', 'Informasi', res.response.message);
+                        			ws.close();
+                        		}
+                        		break;
+                        	case 'callantrian':
+                                $rootScope.$broadcast('callantrian', {noantrian: res.response.noantrian, kdpoli: res.response.kdpoli, nmpoli: res.response.nmpoli, aliaspoli: res.response.aliaspoli, waktupanggil: res.response.waktupanggil, nmpst: res.response.nmpst, kodedokter: res.response.kodedokter, namadokter: res.response.namadokter, list: res.response.list});
+                                break;
+                            case 'panggilulang':
+                                $rootScope.$broadcast('panggilulang', {noantrian: res.response.noantrian, kdpoli: res.response.kdpoli, nmpoli: res.response.nmpoli, aliaspoli: res.response.aliaspoli, waktupanggil: res.response.waktupanggil, nmpst: res.response.nmpst, kodedokter: res.response.kodedokter, namadokter: res.response.namadokter});
+                                break;
+                            case 'updateantrian':
+                                $rootScope.$broadcast('updateantrian', {list: res.response.list});
+                                break;
+                            case 'updatedashboard':
+                                $rootScope.$broadcast('updatedashboard');
+                                break;
+                            case 'clearsession':
+                                $rootScope.$broadcast('clearsession');
+                                break;
+                            case 'clearsessionfinished':
+                                $rootScope.$broadcast('clearsessionfinished');
+                                break;
+                            case 'logoutsession':
+                                $rootScope.$broadcast('logoutsession');
+                                break;
+                            case 'pushniknoka_respon':
+                                $rootScope.$broadcast('pushniknoka_respon', {jenispeserta: res.response.jenispeserta, nomor: res.response.nomor});
+                                break;
+                            default:
+                                console.log('invalid event');
+                        }
+
+                    });
+                    ws.onError(function (event) {
+                        //console.log('connection error', event);
+                        toaster.pop('error', 'Informasi', 'connection error');
+                    });
+                    ws.onClose(function (event) {
+                        //console.log('connection closed', event);
+                        toaster.pop('warning', 'Informasi', 'connection closed');
+                    });
+                    ws.onOpen(function () {
+                        //console.log('connection open');
+                        toaster.pop('success', 'Informasi', 'connection open');
+                        var send = {
+                            event: "login",
+                            data: {
+                            	token: Session.getIdToken(),
+                                id: id,
+                                kdppk: kdppk
+                            }
+                            
+                        };
+                        var zxc = ws.send(send).then(function () {
+                            $rootScope.$broadcast('updateWebsocketcon', {websocketcon: 'on'});
+                        });
+                    });
+                };
+                websocketHelper.close = function () {
+                    ws.close();
+                }
+
+                websocketHelper.status = function () {
+                    //ws.readyState;
+                }
+
+                websocketHelper.callAntrian = function (noantrian, kdpoli, nmpoli, waktupanggil, aliaspoli, nmpst, kodedokter, namadokter) {
+                    var send = {
+                        event: "callantrian",
+                        data: {
+                            noantrian: noantrian,
+                            kdpoli: kdpoli,
+                            nmpoli: nmpoli,
+                            waktupanggil: waktupanggil,
+                            aliaspoli: aliaspoli,
+                            nmpst: nmpst,
+                            kodedokter: kodedokter,
+                            namadokter: namadokter
+                        }
+                    }
+                    ws.send(send);
+                }
+
+                websocketHelper.panggilUlang = function (noantrian, kdpoli, nmpoli, waktupanggil, aliaspoli, nmpst, kodedokter, namadokter) {
+                    var send = {
+                        event: "panggilulang",
+                        data: {
+                            noantrian: noantrian,
+                            kdpoli: kdpoli,
+                            nmpoli: nmpoli,
+                            waktupanggil: waktupanggil,
+                            aliaspoli: aliaspoli,
+                            nmpst: nmpst,
+                            kodedokter: kodedokter,
+                            namadokter: namadokter
+                        }
+                    }
+                    ws.send(send);
+                }
+
+                websocketHelper.updateAntrian = function () {
+                    var send = {
+                        event: "updateantrian"
+                    }
+                    ws.send(send);
+                }
+
+                websocketHelper.updateDashboard = function () {
+                    var send = {
+                        event: "updatedashboard"
+                    }
+                    ws.send(send);
+                }
+
+                websocketHelper.clearSession = function (iduser) {
+                    var send = {
+                        event: "clearsession",
+                        data: {
+                            iduser: iduser
+                        }
+                    }
+                    ws.send(send);
+                }
+                
+                websocketHelper.logoutSession = function () {
+                    var send = {
+                        event: "logoutsession"
+                    }
+                    ws.send(send);
+                }
+
+                return websocketHelper;
+            }
+        ]);

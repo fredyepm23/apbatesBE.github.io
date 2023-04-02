@@ -1,0 +1,99 @@
+'use strict';
+
+app.service('smarttableHelper', 
+	[ 		'$rootScope',
+	function($rootScope) {
+
+		this.start = null;
+		this.number = null;
+		this.data = {};
+		this.posted = false;
+		
+		this.filter = null;
+		this.filter2 = null;
+		this.sort = null;
+
+		var objFilter = {};
+		var filter = {};
+
+		var objFilter2 = {};
+		var filter2 = {};
+
+		this.create = function(tableState) {
+			this.start = null;
+			this.number = null;
+			this.data = {};
+			this.posted = false;
+			this.filter = null;
+			this.filter2 = null;
+			this.sort = null;
+			objFilter = {};
+			filter = {};
+			objFilter2 = {};
+			filter2 = {};
+
+			this.start = (angular.isDefined(tableState.pagination.start)?tableState.pagination.start:0) + 1;
+			this.number = angular.isDefined(tableState.pagination.number)?tableState.pagination.number:10;
+
+			if(angular.isDefined(tableState.search.predicateObject)){
+				var objSearch = tableState.search.predicateObject;
+
+				angular.forEach(objSearch, function (value, key, obj) {
+					filter[key] = " like '%"+value+"%'";
+					angular.extend(objFilter, filter);
+				});
+				this.filter = { "filter": objFilter };
+				angular.extend(this.data, this.filter);
+				this.posted = true;
+			}
+
+			if(angular.isDefined(tableState.sort.predicate)){
+				var field = tableState.sort.predicate;
+				var order = (tableState.sort.reverse)?'desc':'asc';
+				var objSort = {};
+				objSort[field] = order;
+				this.sort = { "sort": objSort };
+				angular.extend(this.data, this.sort);
+				this.posted = true;
+			}
+		};
+
+		this.addFilter = function(key, value) {
+			if (typeof value == 'number')
+				filter[key] = "="+value;
+			else
+				filter[key] = "='"+value+"'";
+			angular.extend(objFilter, filter);
+			
+			this.filter = { "filter": objFilter };
+			angular.extend(this.data, this.filter);
+			this.posted = true;
+		};
+
+		this.addFilter2 = function(key, value) {
+			if (typeof value == 'number')
+				filter2[key] = "="+value;
+			else
+				filter2[key] = "='"+value+"'";
+			angular.extend(objFilter2, filter2);
+			
+			this.filter2 = { "filter2": objFilter2 };
+			angular.extend(this.data, this.filter2);
+			this.posted = true;
+		};
+
+		this.getStart = function() {
+			return this.start;
+		};
+
+		this.getNumber = function() {
+			return this.number;
+		};
+
+		this.getData = function() {
+			return this.posted?this.data:'';
+		};
+
+		return this;
+	}
+]);

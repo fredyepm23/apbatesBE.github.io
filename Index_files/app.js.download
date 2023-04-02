@@ -1,0 +1,26 @@
+'use strict';
+
+angular.module('app', [
+    'ngAnimate',
+    'ngCookies',
+    'ngMessages',
+    'ngResource',
+    'ngSanitize',
+    'ngStorage',
+    'ui.router',
+    'ui.bootstrap',
+    'ui.utils',
+    'ui.load',
+    'ui.jq',
+    'oc.lazyLoad',
+    'angular-jwt',
+    'angular-loading-bar',
+    'toaster',
+    'cgBusy',
+    'ngWebSocket',
+    'angularPromiseButtons',
+    'BotDetectCaptcha',
+    'slick',
+	'com.2fdevs.videogular',
+	'FBAngular'
+]);

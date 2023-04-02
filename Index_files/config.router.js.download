@@ -1,0 +1,385 @@
+'use strict';
+/**
+ * Config for the router
+ */
+angular.module('app')
+        .run(['$rootScope', '$state', '$stateParams', 'Auth', 'AUTH_EVENTS', 'Session', '$transitions',
+            function ($rootScope, $state, $stateParams, Auth, AUTH_EVENTS, Session, $transitions) {
+                $rootScope.$state = $state;
+                $rootScope.$stateParams = $stateParams;
+                
+                $transitions.onStart({}, function($transition) {
+                    //console.log($transition);
+                    //console.log($transition.$from());
+                    //console.log($transition.$to());
+
+                    var next = $transition.$to();
+                    if (!Auth.isAuthorized(next)) {
+                        if (Auth.isAuthenticated()) {
+                            setTimeout(function () {
+                                if (next.self.access != 0) {
+                                    $transition.abort();
+                                    $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                                }
+                            }, 0);
+                        } else {
+                            setTimeout(function () {
+                                if (next.self.access != 0) {
+                                    $transition.abort();
+                                    $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                                }
+                            }, 0);
+                        }
+                    }
+                    else {
+                        if (!Auth.isAuthenticated()) {
+                            setTimeout(function () {
+                                if ( next.self.access != 0) {
+                                    $transition.abort();
+                                    $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                                }
+                            }, 0);
+                        }
+                    }
+                });
+            }])
+        .config(
+                ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG', 'MODULE_CONFIG', '$httpProvider', 'jwtInterceptorProvider', '$locationProvider',
+                    function ($stateProvider, $urlRouterProvider, JQ_CONFIG, MODULE_CONFIG, $httpProvider, jwtInterceptorProvider, $locationProvider) {
+                        jwtInterceptorProvider.tokenGetter = ['Session', function (Session) {
+                            return Session.getSession();
+                        }];
+                        $httpProvider.interceptors.push('jwtInterceptor');
+                        $urlRouterProvider.when('', 'main/menu');
+                        $urlRouterProvider.otherwise('/page/404');
+                        $locationProvider.html5Mode(false);
+                        $locationProvider.hashPrefix('');
+
+                        $stateProvider
+                                .state('page', {
+                                    url: '/page',
+                                    template: '<div ui-view class="fade-in-right-big smooth"></div>',
+                                    access: 0
+                                })
+                                .state('page.404', {
+                                    url: '/404',
+                                    templateUrl: 'tpl/page_404.html',
+                                    access: 0
+                                })
+                                .state('page.forbidden', {
+                                    url: '/forbidden',
+                                    templateUrl: 'tpl/page_forbidden.html',
+                                    access: 0
+                                })
+
+                                .state('access', {
+                                    url: '/access',
+                                    template: '<div ui-view class="fade-in-right-big smooth"></div>',
+                                    access: 0
+                                })
+                                .state('access.signout', {
+                                    url: '/signout',
+                                    templateUrl: 'tpl/page_signout.html',
+                                    access: 0
+                                })
+                                .state('access.404', {
+                                    url: '/404',
+                                    templateUrl: 'tpl/page_404.html',
+                                    access: 0
+                                })
+                                .state('access.forbidden', {
+                                    url: '/forbidden',
+                                    templateUrl: 'tpl/page_forbidden.html',
+                                    access: 0
+                                })
+                                .state('admin', {
+                                    abstract: true,
+                                    url: '/admin',
+                                    templateUrl: 'tpl/admin.html',
+                                    access: 2
+                                })
+                                .state('admin.dashboard', {
+                                    url: '/dashboard',
+                                    templateUrl: 'tpl/dashboard.html',
+                                    resolve: {
+                                        deps: ['$ocLazyLoad',
+                                            function ($ocLazyLoad) {
+                                        		return $ocLazyLoad.load('smart-table').then(
+                                                    function() {
+                                                        return $ocLazyLoad.load('src/js/controllers/dashboard.js');
+                                                    }  
+                                                );
+                                            }
+                                        ]
+                                    },
+                                    access: 2
+                                })
+                                .state('mitra', {
+                                    abstract: true,
+                                    url: '/mitra',
+                                    templateUrl: 'tpl/mitra.html',
+                                    access: 1
+                                })
+                                .state('mitra.dashboard', {
+                                    url: '/dashboard',
+                                    templateUrl: 'tpl/dashboard_mitra.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog', {
+                                    url: '/katalog',
+                                    template: '<div ui-view class="fade-in-down" style="padding-left:30px; padding-right:30px"></div>',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.baseurl', {
+                                    url: '/baseurl',
+                                    templateUrl: 'tpl/katalogws/baseurl.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.aplicares', {
+                                    url: '/aplicares',
+                                    templateUrl: 'tpl/katalogws/aplicares.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim', {
+                                    url: '/vclaim',
+                                    template: '<div ui-view class="fade-in-down"></div>',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.panduan', {
+                                    url: '/panduan',
+                                    templateUrl: 'tpl/katalogws/panduan.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.createsignature', {
+                                    url: '/createsignature',
+                                    templateUrl: 'tpl/katalogws/createsignature.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.decrypt', {
+                                    url: '/decrypt',
+                                    templateUrl: 'tpl/katalogws/decrypt.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.lpk', {
+                                    url: '/lpk',
+                                    templateUrl: 'tpl/katalogws/lpk.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.monitoring', {
+                                    url: '/monitoring',
+                                    templateUrl: 'tpl/katalogws/monitoring.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.peserta', {
+                                    url: '/peserta',
+                                    templateUrl: 'tpl/katalogws/peserta.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.prb', {
+                                    url: '/prb',
+                                    templateUrl: 'tpl/katalogws/prb.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.referensi', {
+                                    url: '/referensi',
+                                    templateUrl: 'tpl/katalogws/referensi.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.rencanakontrol', {
+                                    url: '/rencanakontrol',
+                                    templateUrl: 'tpl/katalogws/rencanakontrol.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.rujukan', {
+                                    url: '/rujukan',
+                                    templateUrl: 'tpl/katalogws/rujukan.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.vclaim.sep', {
+                                    url: '/sep',
+                                    templateUrl: 'tpl/katalogws/sep.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.arsws', {
+                                    url: '/arsws',
+                                    template: '<div ui-view class="fade-in-down"></div>',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.arsws.wsbpjs', {
+                                    url: '/wsbpjs',
+                                    templateUrl: 'tpl/katalogws/wsbpjs.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.arsws.wsrs', {
+                                    url: '/wsrs',
+                                    templateUrl: 'tpl/katalogws/wsrs.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.afktpws', {
+                                    url: '/afktpws',
+                                    template: '<div ui-view class="fade-in-down"></div>',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.afktpws.wsfktp', {
+                                    url: '/wsfktp',
+                                    templateUrl: 'tpl/katalogfktp/wsfktp.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.apotek', {
+                                    url: '/apotek',
+                                    template: '<div ui-view class="fade-in-down"></div>',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.apotek.referensi', {
+                                    url: '/referensi',
+                                    templateUrl: 'tpl/katalogapotek/referensi.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.apotek.obat', {
+                                    url: '/obat',
+                                    templateUrl: 'tpl/katalogapotek/obat.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.apotek.pelayananobat', {
+                                    url: '/pelayananobat',
+                                    templateUrl: 'tpl/katalogapotek/pelayananobat.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.apotek.resep', {
+                                    url: '/resep',
+                                    templateUrl: 'tpl/katalogapotek/resep.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.apotek.sep', {
+                                    url: '/sep',
+                                    templateUrl: 'tpl/katalogapotek/sep.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.apotek.monitoring', {
+                                    url: '/monitoring',
+                                    templateUrl: 'tpl/katalogapotek/monitoring.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare', {
+                                    url: '/pcare',
+                                    template: '<div ui-view class="fade-in-down"></div>',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.createsignature', {
+                                    url: '/createsignature',
+                                    templateUrl: 'tpl/katalogpcare/createsignature.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.diagnosa', {
+                                    url: '/diagnosa',
+                                    templateUrl: 'tpl/katalogpcare/diagnosa.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.decrypt', {
+                                    url: '/decrypt',
+                                    templateUrl: 'tpl/katalogpcare/decrypt.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.dokter', {
+                                    url: '/dokter',
+                                    templateUrl: 'tpl/katalogpcare/dokter.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.kelompok', {
+                                    url: '/kelompok',
+                                    templateUrl: 'tpl/katalogpcare/kelompok.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.kesadaran', {
+                                    url: '/kesadaran',
+                                    templateUrl: 'tpl/katalogpcare/kesadaran.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.kunjungan', {
+                                    url: '/kunjungan',
+                                    templateUrl: 'tpl/katalogpcare/kunjungan.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.mcu', {
+                                    url: '/mcu',
+                                    templateUrl: 'tpl/katalogpcare/mcu.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.obat', {
+                                    url: '/obat',
+                                    templateUrl: 'tpl/katalogpcare/obat.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.pendaftaran', {
+                                    url: '/pendaftaran',
+                                    templateUrl: 'tpl/katalogpcare/pendaftaran.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.peserta', {
+                                    url: '/peserta',
+                                    templateUrl: 'tpl/katalogpcare/peserta.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.poli', {
+                                    url: '/poli',
+                                    templateUrl: 'tpl/katalogpcare/poli.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.provider', {
+                                    url: '/provider',
+                                    templateUrl: 'tpl/katalogpcare/provider.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.spesialis', {
+                                    url: '/spesialis',
+                                    templateUrl: 'tpl/katalogpcare/spesialis.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.statuspulang', {
+                                    url: '/statuspulang',
+                                    templateUrl: 'tpl/katalogpcare/statuspulang.html',
+                                    access: 1
+                                })
+                                .state('mitra.katalog.pcare.tindakan', {
+                                    url: '/tindakan',
+                                    templateUrl: 'tpl/katalogpcare/tindakan.html',
+                                    access: 1
+                                });
+
+                        function load(srcs, callback) {
+                            return {
+                                deps: ['$ocLazyLoad', '$q',
+                                    function ($ocLazyLoad, $q) {
+                                        var deferred = $q.defer();
+                                        var promise = false;
+                                        srcs = angular.isArray(srcs) ? srcs : srcs.split(/\s+/);
+                                        if (!promise) {
+                                            promise = deferred.promise;
+                                        }
+                                        angular.forEach(srcs, function (src) {
+                                            promise = promise.then(function () {
+                                                if (JQ_CONFIG[src]) {
+                                                    return $ocLazyLoad.load(JQ_CONFIG[src]);
+                                                }
+                                                angular.forEach(MODULE_CONFIG, function (module) {
+                                                    if (module.name == src) {
+                                                        name = module.name;
+                                                    } else {
+                                                        name = src;
+                                                    }
+                                                });
+                                                return $ocLazyLoad.load(name);
+                                            });
+                                        });
+                                        deferred.resolve();
+                                        return callback ? promise.then(function () {
+                                            return callback();
+                                        }) : promise;
+                                    }]
+                            }
+                        }
+
+
+                    }
+                ]
+                );

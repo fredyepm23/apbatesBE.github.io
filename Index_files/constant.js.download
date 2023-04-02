@@ -1,0 +1,11 @@
+angular.module('app')
+	.constant('API', {
+		url: '/trust-mark/rest'
+	})
+	.config(['captchaSettingsProvider',
+	function (captchaSettingsProvider){
+		captchaSettingsProvider.setSettings({
+			captchaEndpoint: 'captcha'
+		});
+	}
+])

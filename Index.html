@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/main.html#/mitra/katalog/afktpws/wsfktp -->
+<html data-ng-app="app" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+        
+        <!--<base href="/trust-mark/">--><base href=".">
+        <title>Trust Mark</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/images/logo-ico.ico">
+        <link rel="stylesheet" href="./Index_files/please-wait.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/default.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/animate.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/simple-line-icons.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/sweetalert.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/angular-busy.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/loading-bar.min.css" type="text/css" media="all">
+        <link rel="stylesheet" href="./Index_files/toaster.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/font.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/app.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/print.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/kiosk.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/slick.min.css" type="text/css">
+        <link rel="stylesheet" href="./Index_files/slick-theme.min.css" type="text/css">
+		<link rel="stylesheet" href="./Index_files/videogular.min.css" type="text/css">
+    <style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style></head>
+    <body ng-controller="AppCtrl" class="ng-scope pg-loaded">
+    <div id="toast-container" ng-class="[config.position, config.animation]" toaster-options="{&#39;position-class&#39;: &#39;toast-top-center&#39;, &#39;close-button&#39;:true}" class="ng-scope toast-top-center"><!-- ngRepeat: toaster in toasters --></div>
+    <!-- uiView: --><div class="app ng-scope app-header-fixed app-aside-fixed" id="app" ng-class="{&#39;app-header-fixed&#39;:app.settings.headerFixed, &#39;app-aside-fixed&#39;:app.settings.asideFixed, &#39;app-aside-folded&#39;:app.settings.asideFolded, &#39;app-aside-dock&#39;:app.settings.asideDock, &#39;container&#39;:app.settings.container}" ui-view="">
+  <!-- ngInclude: 'tpl/mitra/header.html' --><div data-ng-include="&#39;tpl/mitra/header.html&#39;" class="app-header navbar ng-scope"><!-- navbar header -->
+<div style="background: #1a9c39" class="navbar-header bg-info">
+    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+        <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll-to="app">
+        <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+    <!-- brand -->
+    <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/app/dashboard" class="bg-info navbar-brand text-lt" style="background: #1a9c39">
+        <!-- <i class="fa fa-laptop"></i> -->
+        <!-- <a class="navbar-brand logo" href="index.html">
+            <img class="img-fluid" src="images/logo-white2.png" alt="">
+        </a> -->
+        <img class="img-fluid" height="30" src="./Index_files/logo-white2.png" alt="">
+        <span class="hidden-folded m-l-sm ng-binding">
+            TRUST MARK
+        </span>
+    </a>
+    <!-- / brand -->
+</div>
+<!-- / navbar header -->
+
+<!-- navbar collapse -->
+<div style="background: #0033cc;" class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+    <!-- buttons -->
+    <div class="nav navbar-nav hidden-xs">
+        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+            <i class="fa fa-dedent fa-fw" style="color: white"></i>
+        </a>
+        <a ui-fullscreen="" style="color: white" class=""><i class="fa fa-expand fa-fw text"></i><i class="fa fa-compress fa-fw text-active"></i></a>
+        <span class="hidden-sm hidden-md" style="text-align: center; color: white"><strong>&nbsp;&nbsp;</strong></span>
+        <!--<a ng-if="currentUser.detUnit != null && currentUser.detUnit != ''">{{ currentUser.detUnit }}</a>-->
+    </div>
+    <!-- / buttons -->
+
+    <!-- nabar right -->
+    <ul class="nav navbar-nav navbar-right" style="background: #0033cc;">        
+        <li class="dropdown" dropdown="">
+            <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="dropdown-toggle clear" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                <span class="thumb-xs avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                    <img ng-src="libs/assets/images/male.png" src="./Index_files/male.png">
+                    <!--<i class="{{app.websocketcon}} md b-white bottom"></i>-->
+                </span>
+                <span class="hidden-sm hidden-md ng-binding" style="color: white;"></span> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                    <a ng-click="logout()">Logout</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="navbar-collapse ng-scope" style="padding-right: 0px; padding-left: 0px;">
+    <div ui-butterbar="" class="butterbar hide"><span class="bar"></span></div>
+</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </div>
+
+  <!-- ngInclude: 'tpl/mitra/aside.html' --><div data-ng-include="&#39;tpl/mitra/aside.html&#39;" class="app-aside hidden-xs bg-white"><div class="aside-wrap ng-scope">
+  <div class="navi-wrap">
+    <!-- ngInclude: 'tpl/mitra/nav.html' --><nav ui-nav="" class="navi clearfix ng-scope" ng-include="&#39;tpl/mitra/nav.html&#39;"><ul class="nav ng-scope">
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+        <span>Menu</span>
+    </li>
+    <li ui-sref-active="active" class="">
+        <a ui-sref="mitra.dashboard" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/dashboard">
+            <i class="glyphicon glyphicon-stats icon text-info"></i>
+            <span class="font-bold">Dashboard</span>
+        </a>
+    </li>
+    <li class="line dk"></li>
+    <li ng-class="{active:$state.includes(&#39;mitra.katalog&#39;)}" class="active">
+        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="auto">
+            <span class="pull-right text-muted">
+            <i class="fa fa-fw fa-angle-right text"></i>
+            <i class="fa fa-fw fa-angle-down text-active"></i>
+            </span>
+            <i class="fa fa-book icon text-default"></i>
+            <span class="font-bold">Katalog WS</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li ng-class="{active:$state.includes(&#39;mitra.katalog.baseurl&#39;)}">
+                <a ui-sref="mitra.katalog.baseurl" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/baseurl">
+                    <span style="padding-left: 5px;">Base URL</span>
+                </a>
+            </li>
+            <li ng-class="{active:$state.includes(&#39;mitra.katalog.aplicares&#39;)}">
+                <a ui-sref="mitra.katalog.aplicares" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/aplicares">
+                    <span style="padding-left: 5px;">Aplicares</span>
+                </a>
+            </li>
+            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim&#39;)}">
+                <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="auto">
+                	<span class="pull-right text-muted">
+			            <i class="fa fa-fw fa-angle-right text"></i>
+			            <i class="fa fa-fw fa-angle-down text-active"></i>
+			        </span>
+                    <span style="padding-left: 5px;">VClaim</span>
+                </a>
+                <ul class="nav nav-sub dk">
+		         	<li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.panduan&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.panduan" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/panduan">
+		                    <span style="padding-left: 10px;">Panduan</span>
+		                </a>
+		            </li>
+		         	<li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.createsignature&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.createsignature" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/createsignature">
+		                    <span style="padding-left: 10px;">Create Signature</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.decrypt&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.decrypt" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/decrypt">
+		                    <span style="padding-left: 10px;">Decrypt</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.lpk&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.lpk" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/lpk">
+		                    <span style="padding-left: 10px;">LPK</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.monitoring&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.monitoring" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/monitoring">
+		                    <span style="padding-left: 10px;">Monitoring</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.peserta&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.peserta" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/peserta">
+		                    <span style="padding-left: 10px;">Peserta</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.prb&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.prb" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/prb">
+		                    <span style="padding-left: 10px;">PRB</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.referensi&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.referensi" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/referensi">
+		                    <span style="padding-left: 10px;">Referensi</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.rencanakontrol&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.rencanakontrol" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/rencanakontrol">
+		                    <span style="padding-left: 10px;">Rencana Kontrol</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.rujukan&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.rujukan" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/rujukan">
+		                    <span style="padding-left: 10px;">Rujukan</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.vclaim.sep&#39;)}">
+		                <a ui-sref="mitra.katalog.vclaim.sep" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/vclaim/sep">
+		                    <span style="padding-left: 10px;">SEP</span>
+		                </a>
+		            </li>
+		       </ul>
+            </li>
+            <li ng-class="{active:$state.includes(&#39;mitra.katalog.arsws&#39;)}">
+                <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="auto">
+                	<span class="pull-right text-muted">
+			            <i class="fa fa-fw fa-angle-right text"></i>
+			            <i class="fa fa-fw fa-angle-down text-active"></i>
+			        </span>
+                    <span style="padding-left: 5px;">Antrean RS</span>
+                </a>
+                <ul class="nav nav-sub dk">
+		         	<li ng-class="{active:$state.includes(&#39;mitra.katalog.arsws.wsbpjs&#39;)}">
+		                <a ui-sref="mitra.katalog.arsws.wsbpjs" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/arsws/wsbpjs">
+		                    <span style="padding-left: 10px;">WS BPJS</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.arsws.wsrs&#39;)}">
+		                <a ui-sref="mitra.katalog.arsws.wsrs" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/arsws/wsrs">
+		                    <span style="padding-left: 10px;">WS RS</span>
+		                </a>
+		            </li>
+		       </ul>
+            </li>
+            <li ng-class="{active:$state.includes(&#39;mitra.katalog.apotek&#39;)}">
+                <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="auto">
+                	<span class="pull-right text-muted">
+			            <i class="fa fa-fw fa-angle-right text"></i>
+			            <i class="fa fa-fw fa-angle-down text-active"></i>
+			        </span>
+                    <span style="padding-left: 5px;">Apotek</span>
+                </a>
+                <ul class="nav nav-sub dk">
+		         	<li ng-class="{active:$state.includes(&#39;mitra.katalog.apotek.referensi&#39;)}">
+		                <a ui-sref="mitra.katalog.apotek.referensi" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/apotek/referensi">
+		                    <span style="padding-left: 10px;">Referensi</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.apotek.obat&#39;)}">
+		                <a ui-sref="mitra.katalog.apotek.obat" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/apotek/obat">
+		                    <span style="padding-left: 10px;">Obat</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.apotek.pelayananobat&#39;)}">
+		                <a ui-sref="mitra.katalog.apotek.pelayananobat" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/apotek/pelayananobat">
+		                    <span style="padding-left: 10px;">Pelayanan Obat</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.apotek.resep&#39;)}">
+		                <a ui-sref="mitra.katalog.apotek.resep" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/apotek/resep">
+		                    <span style="padding-left: 10px;">Resep</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.apotek.sep&#39;)}">
+		                <a ui-sref="mitra.katalog.apotek.sep" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/apotek/sep">
+		                    <span style="padding-left: 10px;">SEP</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.apotek.monitoring&#39;)}">
+		                <a ui-sref="mitra.katalog.apotek.monitoring" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/apotek/monitoring">
+		                    <span style="padding-left: 10px;">Monitoring</span>
+		                </a>
+		            </li>
+		       </ul>
+            </li>
+            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare&#39;)}" class="">
+                <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="auto">
+                	<span class="pull-right text-muted">
+			            <i class="fa fa-fw fa-angle-right text"></i>
+			            <i class="fa fa-fw fa-angle-down text-active"></i>
+			        </span>
+                    <span style="padding-left: 5px;">PCare</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                	<li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.createsignature&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.createsignature" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/createsignature">
+		                    <span style="padding-left: 10px;">Create Signature</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.decrypt&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.decrypt" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/decrypt">
+		                    <span style="padding-left: 10px;">Decrypt</span>
+		                </a>
+		            </li>
+		         	<li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.diagnosa&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.diagnosa" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/diagnosa">
+		                    <span style="padding-left: 10px;">Diagnosa</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.dokter&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.dokter" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/dokter">
+		                    <span style="padding-left: 10px;">Dokter</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.kelompok&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.kelompok" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/kelompok">
+		                    <span style="padding-left: 10px;">Kelompok</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.kesadaran&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.kesadaran" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/kesadaran">
+		                    <span style="padding-left: 10px;">Kesadaran</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.kunjungan&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.kunjungan" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/kunjungan">
+		                    <span style="padding-left: 10px;">Kunjungan</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.mcu&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.mcu" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/mcu">
+		                    <span style="padding-left: 10px;">MCU</span>
+		                </a>
+		            </li>
+		            
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.obat&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.obat" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/obat">
+		                    <span style="padding-left: 10px;">Obat</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.pendaftaran&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.pendaftaran" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/pendaftaran">
+		                    <span style="padding-left: 10px;">Pendaftaran</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.peserta&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.peserta" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/peserta">
+		                    <span style="padding-left: 10px;">Peserta</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.poli&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.poli" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/poli">
+		                    <span style="padding-left: 10px;">Poli</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.provider&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.provider" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/provider">
+		                    <span style="padding-left: 10px;">Provider</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.spesialis&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.spesialis" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/spesialis">
+		                    <span style="padding-left: 10px;">Spesialis</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.statuspulang&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.statuspulang" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/statuspulang">
+		                    <span style="padding-left: 10px;">Status Pulang</span>
+		                </a>
+		            </li>
+		            <li ng-class="{active:$state.includes(&#39;mitra.katalog.pcare.tindakan&#39;)}">
+		                <a ui-sref="mitra.katalog.pcare.tindakan" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/pcare/tindakan">
+		                    <span style="padding-left: 10px;">Tindakan</span>
+		                </a>
+		            </li>
+		       </ul>
+            </li>
+			<li ng-class="{active:$state.includes(&#39;mitra.katalog.afktpws&#39;)}" class="active">
+                <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="auto">
+                	<span class="pull-right text-muted">
+			            <i class="fa fa-fw fa-angle-right text"></i>
+			            <i class="fa fa-fw fa-angle-down text-active"></i>
+			        </span>
+                    <span style="padding-left: 5px;">Antrean FKTP</span>
+                </a>
+                <ul class="nav nav-sub dk">
+		         	<li ng-class="{active:$state.includes(&#39;mitra.katalog.afktpws.wsfktp&#39;)}" class="active" style="">
+		                <a ui-sref="mitra.katalog.afktpws.wsfktp" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#/mitra/katalog/afktpws/wsfktp">
+		                    <span style="padding-left: 10px;">WS FKTP</span>
+		                </a>
+		            </li>
+		       </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </nav>
+  </div>
+</div></div>
+
+  <div class="app-content ng-scope">
+    <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/" class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
+    <!-- uiView: --><div class="app-content-body fade-in-up ng-scope" ui-view="" style=""><!-- uiView: --><div ui-view="" class="fade-in-down ng-scope" style="padding-left:30px; padding-right:30px"><!-- uiView: --><div ui-view="" class="fade-in-down ng-scope"><div class="page-wrapper ng-scope">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Web Service</h1>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-lg-12">
+
+ <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#PasienBaru" class="collapsed" aria-expanded="false">Petunjuk dan Database</a>
+                            </h4>
+                        </div>
+                        <div id="PasienBaru" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                 <b>BUATLAH WEBSERVICE REST API MENGGUNAKAN PHP/NODE JS(PILIH SALAH SATU)</b><br>
+                                   <b>PETUNJUK</b> <br>
+                                   
+                       <p>totalantrean : adalah Jumlah semua antrean</p><br>
+                       <p>sisaantrean : adalah jumlah antrean yang belum di panggil : Field (statusdipanggil)  0=belum 1=sudah  </p><br>
+                       <b>DATABASE</b>
+                          <p> CREATE TABLE `antriansoal` (
+    `nomorantrean` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+    `angkaantrean` INT(11) NULL DEFAULT NULL,
+    `norm` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+    `namapoli` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+    `kodepoli` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+    `tglpriksa` DATE NULL DEFAULT NULL,
+    `nomorkartu` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+    `nik` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+    `keluhan` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+    `statusdipanggil` INT(11) NOT NULL DEFAULT '0',
+    `int` INT(11) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`nomorkartu`) USING BTREE,
+    INDEX `int` (`int`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=695
+;</p>
+
+
+<img src="contohisi.png">
+<br>
+  <b>HASIL TES DI KOMPRES DI KIRIM KE HRD </b>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                  
+
+
+                <div class="panel-group" id="accordion">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#collapse1" class="collapsed" aria-expanded="false">Token</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                            <p>URL : {BASE_URL}/auth</p>
+                            <p>Fungsi : Membuat token </p>
+                            <p>Method : <b>GET</b></p>
+                            <p>Format : <b>Json</b></p>
+                           
+                            <p>Header : <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-username: {user akses}</b><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-password: {password akses}</b><br>
+                            </p>
+                            <div id="Token">
+                                <pre>                                <span class="cp">
+{
+    "response": {
+        "token": "1231242353534645645"
+    },
+    "metadata": {
+        "message": "Ok",
+        "code": 200
+    }
+}                    
+                                 </span>
+                                 </pre>
+                            </div>
+                            <div>
+    <p><b>Keterangan:</b></p>
+    <p>
+        Contoh generate token dapat menggunakan link berikut [jwt] : <a href="https://jwt.io/" target="_blank">https://jwt.io/</a>
+    </p>
+</div>
+                        </div>
+                    </div>
+                </div>
+
+    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#StatusAntrean" class="collapsed" aria-expanded="false">Status Antrean</a>
+                            </h4>
+                        </div>
+                        <div id="StatusAntrean" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>URL : {BASE_URL}/antrean/status/{kode_poli}/{tanggalperiksa}</p>
+                                <p>Contoh URL : {BASE_URL}/antrean/status/001/2020-01-28</p>
+                                <p>Fungsi : Menampilkan status antrean per poli</p>
+                                <p>Method : <b>GET</b></p>
+                                <p>Format : <b>Json</b></p>
+                                <p>Header : <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-token: {token}</b><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-username: {user akses}</b><br>
+                                </p>
+                                
+                                <!--- -->
+                                <!-- nav-pills-->
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#resp-update" data-toggle="tab">Response</a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="resp-update">
+                                        <h4>Response</h4>
+                                        <div id="json-res-update">
+                                            <pre>                                            <span class="cpaju">
+{
+    "response": {
+            "namapoli" : "Poli Umum",
+            "totalantrean" : "25",
+            "sisaantrean" : "4",
+            "antreanpanggil" : "A21",
+            "keterangan" : ""
+    },
+    "metadata": {
+        "message": "Ok",
+        "code": 200
+    }
+}
+                                     </span>
+                                     </pre>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <!--- nav-pills-->
+<div>
+    <p><b>Catatan:</b></p>
+    <p>
+Metadata code: <br>
+200: Sukses <br>
+201: Gagal <br>
+Selain metadata code 200, agar message pada metadata diisi sesuai dengan kondisi di lapangan
+    </p>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end pengajuan-->
+    
+<!-- END POST -->
+
+
+<!-- START POST 2-->
+    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#AmbilAntrean" class="collapsed" aria-expanded="false">Ambil Antrean</a>
+                            </h4>
+                        </div>
+                        <div id="AmbilAntrean" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>URL : {BASE_URL}/antrean</p>
+                                <p>Fungsi : Mengambil antrean</p>
+                                <p>Method : <b>POST</b></p>
+                                <p>Format : <b>Json</b></p>
+                                <p>Header : <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-token: {token}</b><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-username: {user akses}</b><br>
+                                </p>
+                                <!--- -->
+                                <!-- nav-pills-->
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#req-update1" data-toggle="tab" aria-expanded="true">Request</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#resp-update1" data-toggle="tab" aria-expanded="false">Response</a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active in" id="req-update1">
+                                        <h4>Request</h4>
+                                        <div id="json-req-update">
+                                            <pre>                                            <span class="cpaju">
+{
+    "nomorkartu": "00012345678",
+    "nik": "3212345678987654",
+    "kodepoli": "001",
+    "tanggalperiksa": "2020-01-28",
+    "keluhan": "sakit kepala"
+}
+                                            </span>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="resp-update1">
+                                        <h4>Response</h4>
+                                        <div id="json-res-update">
+                                            <pre>                                            <span class="cpaju">
+{
+    "response": {
+            "nomorantrean" : "A12",
+            "angkaantrean" : "12",
+            "namapoli" : "Poli Umum",
+            "sisaantrean" : "4",
+            "antreanpanggil" : "A8",
+            "keterangan" : "Apabila antrean terlewat harap mengambil antrean kembali."
+    },
+    "metadata": {
+        "message": "Ok",
+        "code": 200
+    }
+}
+                                     </span>
+                                     </pre>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <!--- nav-pills-->
+<div>
+    <p><b>Catatan:</b></p>
+    <p>
+Metadata code:<br>
+200: Sukses<br>
+201: Gagal<br>
+202: Pasien Baru<br>
+<br>
+Selain metadata code 200, agar message pada metadata diisi sesuai dengan kondisi di lapangan
+    </p>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end pengajuan-->
+    
+<!-- END POST -->
+
+<!-- START POST 3-->
+    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#SisaAntrean" class="collapsed" aria-expanded="false">Sisa Antrean</a>
+                            </h4>
+                        </div>
+                        <div id="SisaAntrean" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>URL : {BASE_URL}/antrean/sisapeserta/{nomorkartu_jkn}/{kode_poli}/{tanggalperiksa}</p>
+                                <p>Contoh URL : {BASE_URL}/antrean/sisapeserta/00012345678/001/2020-01-28</p>
+                                <p>Fungsi : Melihat sisa antrean di hari H pelayanan</p>
+                                <p>Method : <b>GET</b></p>
+                                <p>Format : <b>Json</b></p>
+                                <p>Header : <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-token: {token}</b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-username: {user akses}</b><br>
+</p>
+                                
+                                <!--- -->
+                                <!-- nav-pills-->
+                                <ul class="nav nav-pills ">
+                                    <li class="active">
+                                        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#resp-update2" data-toggle="tab">Response</a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="resp-update2">
+                                        <h4>Response</h4>
+                                        <div id="json-res-update">
+                                            <pre>                                            <span class="cpaju">
+{
+    "response": {
+            "nomorantrean" : "A20",
+            "namapoli" : "Poli Umum",
+            "sisaantrean" : "4",
+            "antreanpanggil" : "A8",
+            "keterangan" : ""
+    },
+    "metadata": {
+        "message": "Ok",
+        "code": 200
+    }
+}
+                                     </span>
+                                     </pre>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <!--- nav-pills-->
+<div>
+    <p><b>Catatan:</b></p>
+    <p>
+Metadata code:<br>
+200: Sukses<br>
+201: Gagal<br>
+<br>
+Selain metadata code 200, agar message pada metadata diisi sesuai dengan kondisi di lapangan
+    </p>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end pengajuan-->
+    
+<!-- END POST -->
+
+
+<!-- START POST 4-->
+
+                    <!-- end pengajuan-->
+    
+<!-- END POST -->
+
+<!-- START POST 5-->
+    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#BatalAntrean" class="collapsed" aria-expanded="false">Batal Antrean</a>
+                            </h4>
+                        </div>
+                        <div id="BatalAntrean" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>URL : {BASE_URL}/antrean/batal</p>
+                                <p>Fungsi : Membatalkan antrean peserta</p>
+                                <p>Method : <b>PUT</b></p>
+                                <p>Format : <b>Json</b></p>
+                                <p>Header : <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-token: {token}</b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x-username: {user akses}</b><br>
+</p>
+                               
+                                <!--- -->
+                                <!-- nav-pills-->
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#req-update4" data-toggle="tab">Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://dvlp.bpjs-kesehatan.go.id:8888/trust-mark/#resp-update4" data-toggle="tab">Response</a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="req-update4">
+                                        <h4>Request</h4>
+                                        <div>
+                                            <!-- code real-->
+                                            <div id="json-req-update">
+                                                <pre>                                                <span class="cpaju">
+{
+    "nomorkartu": "00012345678",
+    "kodepoli": "001",
+    "tanggalperiksa": "2020-01-28"
+}
+                                     </span>
+                                     </pre>
+                                            </div>
+                                            
+                                            <!-- end code real-->
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="resp-update4">
+                                        <h4>Response</h4>
+                                        <div id="json-res-update">
+                                            <pre>                                            <span class="cpaju">
+
+   "metadata": {
+      "code": 200,
+      "message": "OK"
+   }
+                                     </span>
+                                     </pre>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <!--- nav-pills-->
+<div>
+    <p><b>Catatan:</b></p>
+    <p>
+Metadata code:<br>
+200: Sukses<br>
+201: Gagal<br>
+<br>
+Selain metadata code 200, agar message pada metadata diisi sesuai dengan kondisi di lapangan
+    </p>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end pengajuan-->
+    
+<!-- END POST -->
+
+
+                
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    
+
+</div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </div></div></div></div>
+  </div>
+
+ </div>
+    <script type="text/javascript" src="./Index_files/please-wait.min.js.download"></script>
+    <script type="text/javascript">
+        window.loading_screen = window.pleaseWait({
+            backgroundColor: '#F0F3F4',
+            loadingHtml: "<div class='sk-spinner sk-spinner-three-bounce'><div class='sk-bounce1'></div><div class='sk-bounce2'></div><div class='sk-bounce3'></div></div><p class='loading-message'>Loading ..</p>"
+        });
+    </script>
+    <script src="./Index_files/jquery-3.6.0.min.js.download"></script>
+    <script src="./Index_files/bootstrap.min.js.download"></script>
+    <script src="./Index_files/angular.min.js.download"></script>
+    <script src="./Index_files/angular-animate.min.js.download"></script>
+    <script src="./Index_files/angular-cookies.min.js.download"></script>
+    <script src="./Index_files/angular-messages.min.js.download"></script>
+    <script src="./Index_files/angular-resource.min.js.download"></script>
+    <script src="./Index_files/angular-sanitize.min.js.download"></script>
+    <script src="./Index_files/angular-ui-router.min.js.download"></script> 
+    <script src="./Index_files/ngStorage.min.js.download"></script>
+    <script src="./Index_files/ui-utils.min.js.download"></script>
+    <script src="./Index_files/ui-bootstrap-tpls.js.download"></script>
+    <script src="./Index_files/sweetalert.min.js.download"></script>
+    <script src="./Index_files/ocLazyLoad.min.js.download"></script>
+    <script src="./Index_files/angular-jwt.min.js.download"></script>
+    <script src="./Index_files/loading-bar.min.js.download"></script>
+    <script src="./Index_files/angular-busy.min.js.download"></script>
+    <script src="./Index_files/toaster.min.js.download"></script>
+    <script src="./Index_files/angular-promise-buttons.min.js.download"></script>
+    <script src="./Index_files/angular-websocket.min.js.download"></script>
+    <script src="./Index_files/angularjs-captcha.js.download"></script>
+    <script src="./Index_files/moment.min.js.download"></script>
+    <script src="./Index_files/slick.min.js.download"></script>
+	<script src="./Index_files/slick.min.js(1).download"></script>
+	<script src="./Index_files/videogular.min.js.download"></script>
+	<script src="./Index_files/angular-fullscreen.min.js.download"></script>
+    <script src="./Index_files/app.js.download"></script>
+    <script src="./Index_files/config.js.download"></script>
+    <script src="./Index_files/config.lazyload.js.download"></script>
+    <script src="./Index_files/config.router.js.download"></script>
+    <script src="./Index_files/authInterceptor.js.download"></script>
+    <script src="./Index_files/auth.js.download"></script>
+    <script src="./Index_files/websocket.js.download"></script>
+    <script src="./Index_files/session.js.download"></script>
+    <script src="./Index_files/smarttableHelper.js.download"></script>
+    <script src="./Index_files/ui-load.js.download"></script>
+    <script src="./Index_files/enc.js.download"></script>
+    <script src="./Index_files/main.js.download"></script>
+    <script src="./Index_files/constant.js.download"></script>
+    <script src="./Index_files/setnganimate.js.download"></script>
+    <script src="./Index_files/ui-butterbar.js.download"></script>
+    <script src="./Index_files/ui-focus.js.download"></script>
+    <script src="./Index_files/ui-fullscreen.js.download"></script>
+    <script src="./Index_files/ui-jq.js.download"></script>
+    <script src="./Index_files/ui-module.js.download"></script>
+    <script src="./Index_files/ui-nav.js.download"></script>
+    <script src="./Index_files/ui-scroll.js.download"></script>
+    <script src="./Index_files/ui-shift.js.download"></script>
+    <script src="./Index_files/ui-toggleclass.js.download"></script>
+    <script src="./Index_files/numbersonly.js.download"></script>
+    <script src="./Index_files/focusme.js.download"></script>
+    <script src="./Index_files/lz-string.min.js.download"></script>
+    <script src="./Index_files/crypto-js.js.download"></script>
+    
+
+<script id="f5_cspm">(function(){var f5_cspm={f5_p:'IHEPDJHEJEAMMMDENENLCBGHANGLLGCJLBCPIMDOCEKLPNOJNMDNDKAMPOMIKALJBCGBLOMBBGJJEANPEJEAKLANAOKAAJJJDEENGFPJJKEIICIEHBAKGIOOFJIAKEGP',setCharAt:function(str,index,chr){if(index>str.length-1)return str;return str.substr(0,index)+chr+str.substr(index+1);},get_byte:function(str,i){var s=(i/16)|0;i=(i&15);s=s*32;return((str.charCodeAt(i+16+s)-65)<<4)|(str.charCodeAt(i+s)-65);},set_byte:function(str,i,b){var s=(i/16)|0;i=(i&15);s=s*32;str=f5_cspm.setCharAt(str,(i+16+s),String.fromCharCode((b>>4)+65));str=f5_cspm.setCharAt(str,(i+s),String.fromCharCode((b&15)+65));return str;},set_latency:function(str,latency){latency=latency&0xffff;str=f5_cspm.set_byte(str,40,(latency>>8));str=f5_cspm.set_byte(str,41,(latency&0xff));str=f5_cspm.set_byte(str,35,2);return str;},wait_perf_data:function(){try{var wp=window.performance.timing;if(wp.loadEventEnd>0){var res=wp.loadEventEnd-wp.navigationStart;if(res<60001){var cookie_val=f5_cspm.set_latency(f5_cspm.f5_p,res);window.document.cookie='f5avr1367234214aaaaaaaaaaaaaaaa_cspm_='+encodeURIComponent(cookie_val)+';path=/';}
+return;}}
+catch(err){return;}
+setTimeout(f5_cspm.wait_perf_data,100);return;},go:function(){var chunk=window.document.cookie.split(/\s*;\s*/);for(var i=0;i<chunk.length;++i){var pair=chunk[i].split(/\s*=\s*/);if(pair[0]=='f5_cspm'&&pair[1]=='1234')
+{var d=new Date();d.setTime(d.getTime()-1000);window.document.cookie='f5_cspm=;expires='+d.toUTCString()+';path=/;';setTimeout(f5_cspm.wait_perf_data,100);}}}}
+f5_cspm.go();}());</script><script>
+		function returnCommentSymbol(language = "javascript") {
+			const languageObject = {
+				bat: "@REM",
+				c: "//",
+				csharp: "//",
+				cpp: "//",
+				closure: ";;",
+				coffeescript: "#",
+				dockercompose: "#",
+				css: "/*DELIMITER*/",
+				"cuda-cpp": "//",
+				dart: "//",
+				diff: "#",
+				dockerfile: "#",
+				fsharp: "//",
+				"git-commit": "//",
+				"git-rebase": "#",
+				go: "//",
+				groovy: "//",
+				handlebars: "{{!--DELIMITER--}}",
+				hlsl: "//",
+				html: "<!--DELIMITER-->",
+				ignore: "#",
+				ini: ";",
+				java: "//",
+				javascript: "//",
+				javascriptreact: "//",
+				json: "//",
+				jsonc: "//",
+				julia: "#",
+				latex: "%",
+				less: "//",
+				lua: "--",
+				makefile: "#",
+				markdown: "<!--DELIMITER-->",
+				"objective-c": "//",
+				"objective-cpp": "//",
+				perl: "#",
+				perl6: "#",
+				php: "<!--DELIMITER-->",
+				powershell: "#",
+				properties: ";",
+				jade: "//-",
+				python: "#",
+				r: "#",
+				razor: "<!--DELIMITER-->",
+				restructuredtext: "..",
+				ruby: "#",
+				rust: "//",
+				scss: "//",
+				shaderlab: "//",
+				shellscript: "#",
+				sql: "--",
+				svg: "<!--DELIMITER-->",
+				swift: "//",
+				tex: "%",
+				typescript: "//",
+				typescriptreact: "//",
+				vb: "'",
+				xml: "<!--DELIMITER-->",
+				xsl: "<!--DELIMITER-->",
+				yaml: "#"
+			}
+			return languageObject[language].split("DELIMITER")
+		}
+		var savedChPos = 0
+		var returnedSuggestion = ''
+		let editor, doc, cursor, line, pos
+		pos = {line: 0, ch: 0}
+		var suggestionsStatus = false
+		var docLang = "python"
+		var suggestionDisplayed = false
+		var isReturningSuggestion = false
+		document.addEventListener("keydown", (event) => {
+		setTimeout(()=>{
+			editor = event.target.closest('.CodeMirror');
+			if (editor){
+				const codeEditor = editor.CodeMirror
+				if(!editor.classList.contains("added-tab-function")){
+					editor.classList.add("added-tab-function")
+					codeEditor.removeKeyMap("Tab")
+					codeEditor.setOption("extraKeys", {Tab: (cm)=>{
+
+						if(returnedSuggestion){
+							acceptTab(returnedSuggestion)
+						}
+						else{
+							cm.execCommand("defaultTab")
+						}
+					}})
+				}
+				doc = editor.CodeMirror.getDoc()
+				cursor = doc.getCursor()
+				line = doc.getLine(cursor.line)
+				pos = {line: cursor.line, ch: line.length}
+
+				if(cursor.ch > 0){
+					savedChPos = cursor.ch
+				}
+
+				const fileLang = doc.getMode().name
+				docLang = fileLang
+				const commentSymbol = returnCommentSymbol(fileLang)
+				if (event.key == "?"){
+					var lastLine = line
+					lastLine = lastLine.slice(0, savedChPos - 1)
+
+					if(lastLine.trim().startsWith(commentSymbol[0])){
+						lastLine += " "+fileLang
+						lastLine = lastLine.split(commentSymbol[0])[1]
+						window.postMessage({source: 'getQuery', payload: { data: lastLine } } )
+						isReturningSuggestion = true
+						displayGrey("\nBlackbox loading...")
+					}
+				}else if(event.key === "Enter" && suggestionsStatus && !isReturningSuggestion){
+					var query = doc.getRange({ line: Math.max(0,cursor.line-10), ch: 0 }, { line: cursor.line, ch: line.length })
+					window.postMessage({source: 'getSuggestion', payload: { data: query, language: docLang } } )
+					displayGrey("Blackbox loading...")
+				}else if(event.key === "ArrowRight" && returnedSuggestion){
+					acceptTab(returnedSuggestion)
+				}else if(event.key === "Enter" && isReturningSuggestion){
+					displayGrey("\nBlackbox loading...")
+				}else if(event.key === "Escape"){
+					displayGrey("")
+				}
+			}
+		}, 0)
+		})
+
+		function acceptTab(text){
+		if (suggestionDisplayed){
+			displayGrey("")
+			doc.replaceRange(text, pos)
+			returnedSuggestion = ""
+			updateSuggestionStatus(false)
+		}
+		}
+		function acceptSuggestion(text){
+			displayGrey("")
+			doc.replaceRange(text, pos)
+			returnedSuggestion = ""
+			updateSuggestionStatus(false)
+		}
+		function displayGrey(text){
+			if(!text){
+				document.querySelector(".blackbox-suggestion").remove()
+				return
+			}
+			var el = document.querySelector(".blackbox-suggestion")
+			if(!el){
+				el = document.createElement('span')
+				el.classList.add("blackbox-suggestion")
+				el.style = 'color:grey'
+				el.innerText = text
+			}
+			else{
+				el.innerText = text
+			}
+			
+			var lineIndex = pos.line;
+			editor.getElementsByClassName('CodeMirror-line')[lineIndex].appendChild(el)
+		}
+		function updateSuggestionStatus(s){
+			suggestionDisplayed = s
+			window.postMessage({source: 'updateSuggestionStatus', status: suggestionDisplayed, suggestion: returnedSuggestion})
+		}
+		window.addEventListener('message', (event)=>{
+		if (event.source !== window ) return
+		if (event.data.source == 'return'){
+			isReturningSuggestion = false
+			const formattedCode = formatCode(event.data.payload.data)
+			returnedSuggestion = formattedCode
+			displayGrey(formattedCode)
+			updateSuggestionStatus(true)
+		}
+		if(event.data.source == 'suggestReturn'){
+			returnedSuggestion = event.data.payload.data
+			displayGrey(event.data.payload.data)
+			updateSuggestionStatus(true)
+		}
+		if(event.data.source == 'suggestionsStatus'){
+			suggestionsStatus = event.data.payload.enabled
+		}
+		if(event.data.source == 'acceptSuggestion'){
+			
+			acceptSuggestion(event.data.suggestion)
+		}
+		})
+		document.addEventListener("keyup", function(){
+			returnedSuggestion = ""
+			updateSuggestionStatus(false)
+		})
+		function formatCode(data) {
+			if (Array.isArray(data)) {
+				var finalCode = ""
+				var pairs = []
+		
+				const commentSymbol = returnCommentSymbol(docLang)
+				data.forEach((codeArr, idx) => {
+					const code = codeArr[0]
+					var desc = codeArr[1]
+					const descArr = desc.split("\n")
+					var finalDesc = ""
+					descArr.forEach((descLine, idx) => {
+						const whiteSpace = descLine.search(/\S/)
+						if (commentSymbol.length < 2 || idx === 0) {
+							finalDesc += insert(descLine, whiteSpace, commentSymbol[0])
+						}
+						if (commentSymbol.length > 1 && idx === descArr.length - 1) {
+							finalDesc = finalDesc + commentSymbol[1] + "\n"
+						}
+					})
+		
+					finalCode += finalDesc + "\n\n" + code
+					pairs.push(finalCode)
+				})
+				return "\n"+pairs.join("\n")
+			}
+		
+			return "\n"+data
+		}
+		
+		function insert(str, index, value) {
+			return str.substr(0, index) + value + str.substr(index)
+		}
+	</script><script src="./Index_files/screenfull.min.js.download"></script></body></html>

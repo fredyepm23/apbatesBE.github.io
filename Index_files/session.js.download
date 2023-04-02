@@ -1,0 +1,86 @@
+'use strict';
+
+app.service('Session', 
+	[ 		'jwtHelper', '$localStorage',
+	function(jwtHelper,   $localStorage) {
+
+		this.create = function(userdata) {
+			var tokenPayload = jwtHelper.decodeToken(userdata.token);
+			setCookie('TMSESSIONID',userdata.token,tokenPayload.exp);
+						
+			$localStorage.userInfo = userdata;
+			
+			this.id = userdata.id;
+			this.nama = userdata.pegawai.nama;
+			this.access = userdata.access;
+		};
+
+		this.update = function() {
+			var userdata = $localStorage.userInfo;
+			
+			this.id = userdata.id;
+			this.nama = userdata.pegawai.nama;
+			this.access = userdata.access;
+		};
+
+		this.destroy = function() {
+			deleteCookie('TMSESSIONID');
+			delete $localStorage.userInfo;
+
+			this.id = null;
+			this.nama = null;
+			this.access = null;
+		};
+
+		this.getId = function() {
+			return this.id;
+		};
+
+		this.isTokenExpired = function() {
+			return jwtHelper.isTokenExpired(getCookie('TMSESSIONID'));
+		};
+
+		this.getSession = function() {
+			return getCookie('TMSESSIONID');
+		};
+
+		this.isSessionActive = function() {
+			return checkCookie('TMSESSIONID');
+		};
+
+		function setCookie(cname, cvalue, extime) {
+			var d = new Date();
+			d.setTime(extime*1000);
+			var expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + "; " + expires;
+		}
+
+		function getCookie(cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1);
+				if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+			}
+			return "";
+		}
+
+		function deleteCookie(name) {
+			document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		};
+
+		function checkCookie(cname) {
+			var nama=getCookie(cname);
+			var s=false;
+			if (nama!="") {
+				s=true;
+			}
+
+			return s;
+		}
+
+		return this;
+
+	}
+]);

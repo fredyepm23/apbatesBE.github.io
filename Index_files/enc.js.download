@@ -1,0 +1,29 @@
+'use strict';
+
+app.service('Enc', 
+	[ 		'Session',
+	function(Session) {
+
+		this.encrypt = function(plaintext) {
+			var _key = '0123456789abcdef0123456789abcdef';
+			var _iv = 'abcdef9876543210';
+			key = CryptoJS.enc.Utf8.parse(_key);
+			iv = CryptoJS.enc.Utf8.parse(_iv);
+			var encrypted = CryptoJS.AES.encrypt(plaintext, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });
+			encrypted = encrypted.toString();
+			return encrypted;
+		};
+		
+		this.decrypt = function(plaintext) {
+			var _key = '0123456789abcdef0123456789abcdef';
+			var _iv = 'abcdef9876543210';
+			key = CryptoJS.enc.Utf8.parse(_key);
+			iv = CryptoJS.enc.Utf8.parse(_iv);
+			var encrypted = CryptoJS.AES.encrypt(plaintext, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });
+			encrypted = encrypted.toString();
+			return encrypted;
+		};
+
+		return this;
+	}
+]);

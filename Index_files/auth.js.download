@@ -1,0 +1,42 @@
+'use strict';
+
+app.factory('Auth', [
+             '$http', '$rootScope', 'Session', 'AUTH_EVENTS', 'jwtHelper', '$websocket', 'API_URL',
+    function ($http,   $rootScope, Session, AUTH_EVENTS, jwtHelper, $websocket, API_URL) {
+        var authService = {};
+
+        authService.login2 = function () {
+            Session.update();
+            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        };
+
+        authService.isAuthenticated = function () {
+            return Session.isSessionActive();
+        };
+
+        authService.isTokenExpired = function () {
+            return Session.isTokenExpired();
+        };
+
+        authService.isAuthorized = function (nextState) {
+            var found = true;
+            if(Session.access==1){
+                if(nextState.self.access==2){
+                    found = false;
+                }
+            }
+            else if(Session.access==2){
+                if(nextState.self.access==1){
+                    found = false;
+                }
+            }
+            return found;
+        };
+
+        authService.logout = function () {
+        	Session.destroy();
+            $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+        };
+
+        return authService;
+    }]);
